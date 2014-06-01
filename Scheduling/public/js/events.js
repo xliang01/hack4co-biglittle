@@ -71,7 +71,9 @@ $(document).ready(function() {
   
   $.getJSON(json_url, function(data) {
     $.each(data, function(i, item){
-      $("#events-data").append("<tr><td><a class='show' href='"+item.eventId+"'>"+item.title+"</a></td><td>Coordinator Here</td><td>"+item.startTime+"</td><td>###</td><td><a href='"+item.eventId+"' class='btn btn-xs btn-success'>Edit</a> <a href='"+item.eventId+"'class='btn btn-xs btn-danger'>Delete</a></td></tr>");
+      var unformattedDate = new Date(item.startTime);
+      var formattedDate = unformattedDate;
+      $("#events-data").append("<tr><td><a class='show' href='"+item.eventId+"'>"+item.title+"</a></td><td>"+item.startTime+"</td><td>###</td><td><a href='"+item.eventId+"' class='btn btn-xs btn-success'>Edit</a> <a href='"+item.eventId+"'class='btn btn-xs btn-danger'>Delete</a></td></tr>");
     });
   });
   
