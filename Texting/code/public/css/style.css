@@ -1,0 +1,85 @@
+body, #demo {
+  margin:0px;
+  padding:0px;
+  height:100%;
+}
+
+#login {
+  font-size:25px;
+  font-weight:bold;
+  background:black;
+  color:white;
+  padding:10px;
+  text-align:right;
+}
+
+#signout {
+  text-decoration:none;
+  font-weight:bold;
+  color: rgb(202, 60, 60);
+}
+
+#signin {
+  text-decoration:none;
+  font-weight:bold;
+  color: rgb(28, 184, 65);
+}
+
+#auth {
+  text-align:center;
+}
+
+.auth-switch { 
+  margin:5px; 
+  padding:5px;
+}
+
+.auth-switch form { 
+  display: inline-block; 
+}
+
+.auth-switch input[type=button] { 
+/*
+  text-transform:capitalize; 
+*/  
+}
+
+input[type=button].enable-auth { 
+  font-size:25px;
+  background: rgb(202, 60, 60);
+  color: white;
+  border-radius: 4px;
+  border-style:none;
+}
+
+input[type=button].disable-auth { 
+  font-size:25px;
+  background: rgb(28, 184, 65);
+  color: white;
+  border-radius: 4px;
+  border-style:none;
+}
+
+input[type=button]:disabled { 
+  background: rgba(28, 184, 65, .35);
+}
+
+#demo {
+  text-align:center;
+}
+
+.demo-action { 
+  font-size:25px;
+  font-weight:bold;
+  }
+
+input[type=button].demo-action { 
+  background: black;
+  color: white;
+  border-radius: 4px;
+  border-style:none;
+}
+
+#demo-results {
+  text-align:center;
+}

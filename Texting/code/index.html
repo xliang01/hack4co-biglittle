@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Data Up!</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script>
+      function setup() {
+        personaSetup(function() {
+                       authSetup(function(data) {
+                         demoSetup(data);
+                       });
+                     },
+                     function() {
+                       authTeardown(function(data) { 
+                         demoTeardown(); 
+                       });
+                     });
+      }
+    </script>
+  </head>
+  <body onLoad="setup()">
+    <div id="login"> 
+      <span id="usergreeting"> </span>
+      <span id="userlogin">&nbsp;
+        <a id="signin" style="display:none" href="#">Sign In</a>
+        <a id="signout" style="display:none" href="#">Sign Out</a>
+      </span>
+    </div>
+    <br />
+    <div id="auth">
+    </div>
+    <br />
+    <div id="demo" style="display:none">
+      <div id="demo-action">
+        <form id="demo-form" name="demo-form">
+          <select class="demo-action" id="demo-route" onchange="demoRouteChange()">
+            <option value="">-Demo-</option>
+            <option value="/api">/api</option>
+            <option value="/data">/data</option>
+          </select>
+          <select class="demo-action" id="demo-method" name="demo-method" style="display:none" onchange="demoMethodChange()"></select>
+          <select class="demo-action" id="demo-api" name="demo-api" style="display:none"></select>
+          <input class="demo-action" id="demo-url" name="demo-url" placeholder="/your/url/here" style="display:none" />
+          <input class="demo-action" id="demo-submit" name="demo-submit" type="button" value="Submit" onclick="doDemo()" style="display:none" />
+        </form>
+      </div>
+      <iframe id="demo-results" name="demo-results" height="60%" width="75%" scrolling="auto" style="display:none"></iframe>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://login.persona.org/include.js"></script>
+    <script src="js/personaSetup.js"></script>
+    <script src="js/demoSetup.js"></script>
+    <script src="js/authSetup.js"></script>
+  </body>
+</html>

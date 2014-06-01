@@ -1,0 +1,65 @@
+{
+  "apiVersion" : "0.1",
+  "swaggerVersion" : "1.2",
+  "basePath":"http://proxy-dataupco.rhcloud.com",
+  "resourcePath" : "/api",
+  "apis" : [
+    {
+      "path" : "/api/{api}/{relativeUrl}",
+      "description" : "Performs call to API as requested",
+      "operations" : [
+        {
+          "method" : "GET",
+          "nickname" : "getApiWithUrl",
+          "type" : "Anything",
+          "parameters" : [
+            {
+              "paramType" : "path",
+              "name"  : "api",
+              "description" : "Identifer of the api to access",
+              "dataType" : "string",
+              "required" : true
+            },
+            {
+              "paramType" : "path",
+              "name"  : "relativeUrl",
+              "description" : "Relative Url to call on api provider",
+              "dataType" : "string",
+              "required" : false
+            },
+            {
+              "paramType" : "query",
+              "name"  : "jsonp",
+              "description" : "Function to use for callback",
+              "dataType" : "string",
+              "required" : false
+            }
+          ],
+          "summary" : "Performs call to API as requested",
+          "notes" : "Errors will have an error parameter",
+          "errorResponses" : [
+            {
+              "code" : 401,
+              "message" : "User session not found"
+            },
+            {
+              "code" : 409,
+              "message" : "Api auth not found"
+            },
+            {
+              "code" : 404,
+              "message" : "Api not found"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models" : {
+    "Anything" : {
+      "id" : "Anything",
+      "properties" : {
+      }
+    }
+  }
+}

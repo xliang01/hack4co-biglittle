@@ -1,0 +1,27 @@
+{
+  "apiVersion":"0.1",
+  "swaggerVersion":"1.2",
+  "basePath":"http://proxy-dataupco.rhcloud.com",
+  "apis":[
+    {
+      "path":"/../status",
+      "description":"Check system health"
+    },
+    {
+      "path":"/../session",
+      "description":"Manage user session"
+    },
+    {
+      "path":"/../auth",
+      "description":"Manage auth with services"
+    },
+    {
+      "path":"/../api",
+      "description":"Interact with services"
+    },
+    {
+      "path":"/../data",
+      "description":"Manage data from services"
+    }
+  ]
+}

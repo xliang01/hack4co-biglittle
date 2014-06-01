@@ -1,0 +1,100 @@
+{
+  "apiVersion" : "0.1",
+  "swaggerVersion" : "1.2",
+  "basePath":"http://proxy-dataupco.rhcloud.com",
+  "resourcePath" : "/data",
+  "apis" : [
+    {
+      "path" : "/data/{api}/{relativeUrl}",
+      "description" : "Manage temporary data",
+      "operations" : [
+        {
+          "method" : "GET",
+          "nickname" : "queryData",
+          "type" : "Anything",
+          "parameters" : [
+            {
+              "paramType" : "query",
+              "name"  : "kvp",
+              "description" : "KVP",
+              "dataType" : "string",
+              "required" : false
+            }
+          ],
+          "summary" : "Ingest data from api call",
+          "notes" : "Errors will have an error parameter",
+          "errorResponses" : [
+            {
+              "code" : 401,
+              "message" : "User session not found"
+            },
+            {
+              "code" : 500,
+              "message" : "Query could not be performed"
+            }
+          ]
+        },
+        {
+          "method" : "POST",
+          "nickname" : "ingestData",
+          "type" : "Ingestion",
+          "parameters" : [
+            {
+              "paramType" : "path",
+              "name"  : "api",
+              "description" : "Identifer of the api to access",
+              "dataType" : "string",
+              "required" : true
+            },
+            {
+              "paramType" : "path",
+              "name"  : "relativeUrl",
+              "description" : "Relative Url to call on api provider",
+              "dataType" : "string",
+              "required" : false
+            }
+          ],
+          "summary" : "Ingest data from api call",
+          "notes" : "Errors will have an error parameter",
+          "errorResponses" : [
+            {
+              "code" : 401,
+              "message" : "User session not found"
+            },
+            {
+              "code" : 409,
+              "message" : "Api auth not found"
+            },
+            {
+              "code" : 500,
+              "message" : "Operation could not be performed"
+            },
+            {
+              "code" : 404,
+              "message" : "Api not found"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models" : {
+    "Anything" : {
+      "id" : "Anything",
+      "properties" : {
+      }
+    },
+    "Ingestion" : {
+      "id" : "Ingestion",
+      "properties" : {
+        "refs" : {
+          "type" : "array", 
+          "description" : "Array of references to ingested records",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

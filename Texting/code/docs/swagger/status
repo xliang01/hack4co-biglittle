@@ -1,0 +1,32 @@
+{
+  "apiVersion" : "0.1",
+  "swaggerVersion" : "1.2",
+  "basePath":"http://proxy-dataupco.rhcloud.com",
+  "resourcePath" : "/status",
+  "apis" : [
+    {
+      "path" : "/status",
+      "description" : "Health check",
+      "operations" : [
+        {
+          "method" : "GET",
+          "nickname" : "getStatus",
+          "type" : "string",
+          "parameters" : [],
+          "summary" : "Indicates health of server",
+          "notes" : "Any 200 response should be considered healthy",
+          "errorResponses" : [
+            {
+              "code" : 404,
+              "message" : "The server is not running"
+            },
+            {
+              "code" : 500,
+              "message" : "Something is wrong with the deployment"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

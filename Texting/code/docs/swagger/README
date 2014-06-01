@@ -1,0 +1,30 @@
+DO THE FOLLOWING TO BUILD STATIC DOCUMENTATION
+=================================================
+
+<code>
+  $ pwd
+  /path/to/swagger-codegen 
+  $ rm -rf samples/docs/swagger-static-docs/*
+  $ ./bin/runscala.sh src/main/scala/com/wordnik/swagger/codegen/SwaggerDocGenerator.scala /path/to/api-docs
+  $ ls samples/docs/swagger-static-docs/
+  $ vi samples/docs/swagger-static-docs/src/main/webapp/assets/js/main.js // REMOVE URL TO BLOGSPOT
+</code>
+
+
+USE THIS PATTERN IN CODE TO BECOME INTERACTIVE
+NOTE: replace <THESE.VALUES>
+==================================================
+
+<code>
+  var swagger = require("swagger-node-express");
+  swagger.setAppHandler(<EXPRESS.APP>);
+
+  swagger.addModels({ <SWAGGER.API.MODEL> });
+  swagger.addGet({
+    'spec': { <SWAGGER.API.OPERATION> },
+    'action': function(req,res) { <OPERATION.BODY> }
+  });
+
+  swagger.configureSwaggerPaths("", "/api-docs", "");
+  swagger.configure("<URL>", "<VERSION>");
+</code>
