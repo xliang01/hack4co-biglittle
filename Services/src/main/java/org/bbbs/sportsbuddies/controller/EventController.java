@@ -8,17 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.bbbs.sportsbuddies.domain.Event;
+import org.bbbs.sportsbuddies.service.EventService;
 
 @RestController
 @RequestMapping("/api/")
 public class EventController {
+	
+	private EventService eventService = new EventService();
 	
     @RequestMapping(value = "events/{id}", 
     				method = RequestMethod.GET, 
     				headers="Accept=application/json")
     public Event getEvent(@PathVariable int id) {
     	
-        return new Event();
+        return eventService.getEvent(id);
     }
 
     @RequestMapping(value = "events", 
@@ -26,12 +29,7 @@ public class EventController {
     				headers="Accept=application/json")
     public List<Event> getEvents() {
         
-    	List<Event> events = new ArrayList<Event>();
-
-        events.add(new Event());
-        events.add(new Event());
-
-        return events;
+        return eventService.getAllEvents();
     }
 
     @RequestMapping(value = "events", 
