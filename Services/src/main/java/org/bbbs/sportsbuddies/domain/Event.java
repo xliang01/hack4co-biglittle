@@ -1,18 +1,30 @@
 package org.bbbs.sportsbuddies.domain;
 
 public class Event {
+	private int id;
     private String name;
     private String location;
     private String eventDate;
 
     public Event() {}
 
-    public Event(String name, String location, String eventDate) {
-        this.name = name;
+    public Event(int id, String name, String location, String eventDate) {
+        this.id = id;
+    	this.name = name;
         this.location = location;
         this.eventDate = eventDate;
     }
+    
+    public int getId()
+    {
+    	return id;
+    }
 
+    public void setId(int id)
+    {
+    	this.id = id;
+    }
+    
     public String getName() {
         return name;
     }
