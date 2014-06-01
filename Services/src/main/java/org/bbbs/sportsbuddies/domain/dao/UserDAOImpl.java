@@ -60,6 +60,10 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 	public void save(final User user) {
 		
 		Address address = user.getAddress();
+		if(address == null) {
+			address = new Address();
+		}
+		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
 		final String sql = "INSERT INTO User (FirstName, LastName, Email, UserTypeId) VALUES (?, ?, ?, ?)";
@@ -76,10 +80,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 		    },
 		    keyHolder);
 		
-		if(address != null) {
-			final String addressSql = "INSERT INTO Address (Line1, Line2, City, State, Zip, UserId) VALUES (?, ?, ?, ?, ?, ?)";
-			jdbcTemplate.update(addressSql, new Object[] { address.getLine1(), address.getLine2(), address.getCity(), address.getState(), address.getZip(), keyHolder.getKey() });
-		}
+		final String addressSql = "INSERT INTO Address (Line1, Line2, City, State, Zip, UserId) VALUES (?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(addressSql, new Object[] { address.getLine1(), address.getLine2(), address.getCity(), address.getState(), address.getZip(), keyHolder.getKey() });
 	}
 	
 	public void update(User user) {
@@ -89,10 +91,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 		final String sql = "UPDATE User SET FirstName=?, LastName=?, Email=?, UserTypeId=? WHERE UserId=?";
 		jdbcTemplate.update(sql, new Object[] { user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserTypeId(), user.getUserId() });
 		
-		if(address != null) {
-			final String addressSql = "UPDATE Address SET Line1=?, Line2=?, City=?, State=?, Zip=? WHERE AddressId=?";
-			jdbcTemplate.update(addressSql, new Object[] { address.getLine1(), address.getLine2(), address.getCity(), address.getState(), address.getZip(), address.getAddressId() });
-		}
+		final String addressSql = "UPDATE Address SET Line1=?, Line2=?, City=?, State=?, Zip=? WHERE AddressId=?";
+		jdbcTemplate.update(addressSql, new Object[] { address.getLine1(), address.getLine2(), address.getCity(), address.getState(), address.getZip(), address.getAddressId() });
 	}
 	
 	public void deleteById(int id) {
