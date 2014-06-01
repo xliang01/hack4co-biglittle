@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
   });
   
-  $(".add-btn").click(function(e) {
+$(".add-btn").click(function(e) {
     e.preventDefault();
     $("#page-container").load("../bigs/add.html");
   });

@@ -10,4 +10,10 @@ $(document).ready(function() {
       }
     });
   });
+  
+  $(".add-btn").click(function(e) {
+    console.log("hjsgjfhs");
+    e.preventDefault();
+    $("#page-container").load("../littles/add.html");
+  });
 });
