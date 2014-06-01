@@ -10,14 +10,22 @@ public final class DateUtil {
 
 	public static String DateToString(Date date) {
 		
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-		cal.setTime(date);
-		return DatatypeConverter.printDateTime(cal);
+		if(date != null) {
+			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+			cal.setTime(date);
+			return DatatypeConverter.printDateTime(cal);
+		}
+		
+		return null;
 	}
 	
 	public static Date StringToDate(String date) {
 		
-		Calendar cal = DatatypeConverter.parseDate(date);
-		return cal.getTime();
+		if(date != null && date.trim().length() > 0 ) {
+			Calendar cal = DatatypeConverter.parseDate(date);
+			return cal.getTime();
+		}
+		
+		return null;
 	}
 }
