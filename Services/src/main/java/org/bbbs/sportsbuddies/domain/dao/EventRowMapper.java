@@ -13,13 +13,13 @@ public class EventRowMapper implements RowMapper {
 
 		Event event = new Event();
 
-		event.setId(rs.getInt("EventId"));
+		event.setEventId(rs.getInt("EventId"));
 
-		event.setName(rs.getString("EventName"));
+		event.setTitle(rs.getString("Title"));
 
 		event.setLocation(rs.getString("Location"));
 		
-		event.setEventDate(rs.getString("EventDate"));
+//		event.setEventDate(rs.getString("EventDate"));
 
 		return event;
 

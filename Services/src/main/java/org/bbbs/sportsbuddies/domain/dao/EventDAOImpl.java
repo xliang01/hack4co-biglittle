@@ -32,11 +32,11 @@ public class EventDAOImpl implements EventDAO {
 	@Override
 	public void update(Event event) {
 
-		String sql = "INSERT INTO Event "
-				+ "(EventId, EventName, Location, EventDate) VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, new Object[] { event.getId(),
-		event.getName(), event.getLocation(), event.getEventDate()
-		});
+//		String sql = "INSERT INTO Event "
+//				+ "(EventId, EventName, Location, EventDate) VALUES (?, ?, ?, ?)";
+//		jdbcTemplate.update(sql, new Object[] { event.getEventName(),
+//		event.getName(), event.getLocation(), event.getEventDate()
+//		});
 
 	}
 
