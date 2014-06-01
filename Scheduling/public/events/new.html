@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Add New Event</h1>
+      <hr />
+      <form role="form" id="event-form">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" name="title" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" rows="3" id="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" name="location" class="form-control" id="location">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="minParticipants">Minimum Participants</label>
+              <input type="text" name="minParticipants" id="minParticipants" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="minParticipants">Maximum Participants</label>
+            <input type="text" name="maxParticipants" id="maxParticipants" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="startTime">Start Time</label>
+              <input type="datetime" name="startTime" id="startTime" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="endTime">End Time</label>
+              <input type="datetime" name="endTime" id="endTime" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-block btn-lg btn-success pull-right" id="event-submit" value="Add Event">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="../js/events.js"></script>
