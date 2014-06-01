@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var json_url = "https://bbbs.firebaseio.com/bigs.json";
+  var json_url = "http://ec2-54-200-250-50.us-west-2.compute.amazonaws.com:8080/sports-buddies/api/bigs";
   
   $.getJSON(json_url, function(data) {
     $.each(data, function(i, item){
