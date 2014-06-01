@@ -25,11 +25,11 @@ $(document).ready(function() {
       data: event_data,
       dataType: "json",
       crossDomain: true,
-      contentType: "application/json",
-      success: function(result) {
-        // stuff
-      }
-    });
+      contentType: "application/json"
+    })
+    .done(function(result) {
+      $("#page-content").load("../events/index.html");
+    })
   });
   
   /* UPDATE */
@@ -47,24 +47,26 @@ $(document).ready(function() {
     $.ajax({
       url: ''+id,
       type: 'PUT',
-      data: updated_event,
-      success: function(result) {
-        // Stuff
-      }
-    });
+      data: updated_event
+    })
+    .done(function(result) {
+      $("#page-content").load("../events/index.html");
+    })
   });
   
   /* DELETE */
   
-  $("#btn-delete").on("click", function(e) {
-    id = $(this).attr("href");
+  $("#events-data").on("click", "#delete-event-btn", function(e) {
+    e.preventDefault();
+    var delete_id = $(this).attr("href");
     $.ajax({
-      url: ''+id,
-      type: 'DELETE',
-      success: function(result) {
-        // Stuff here
-      }
-    });
+      url: json_url+"/"+delete_id,
+      type: "DELETE",
+      crossDomain: true
+    })
+    .done(function(result) {
+      location.reload();
+    })
   });
   
   /* INDEX */
@@ -73,7 +75,7 @@ $(document).ready(function() {
     $.each(data, function(i, item){
       var unformattedDate = new Date(item.startTime);
       var formattedDate = unformattedDate.toDateString();
-      $("#events-data").append("<tr><td><a class='show' href='"+item.eventId+"'>"+item.title+"</a></td><td>"+formattedDate+"</td><td>###</td><td><a href='"+item.eventId+"' class='btn btn-xs btn-success'>Edit</a> <a href='"+item.eventId+"'class='btn btn-xs btn-danger'>Delete</a></td></tr>");
+      $("#events-data").append("<tr><td><a class='show' href='"+item.eventId+"'>"+item.title+"</a></td><td>"+formattedDate+"</td><td>###</td><td><a href='"+item.eventId+"' class='btn btn-xs btn-success'>Edit</a> <a href='"+item.eventId+"' id='delete-event-btn' class='btn btn-xs btn-danger'>Delete</a></td></tr>");
     });
   });
   
