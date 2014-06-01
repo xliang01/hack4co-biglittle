@@ -22,9 +22,12 @@ $(document).ready(function() {
       dataType: "json",
       crossDomain: true,
       contentType: "application/json",
-      success: function(result) {
-        // stuff
-      }
-    });
+      })
+      .done(function(result) {
+        $("#page-content").load("../bigs/index.html");
+      })
+      .error(function(result) {
+        console.log(result);
+      });
   });
 });

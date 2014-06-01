@@ -72,8 +72,8 @@ $(document).ready(function() {
   $.getJSON(json_url, function(data) {
     $.each(data, function(i, item){
       var unformattedDate = new Date(item.startTime);
-      var formattedDate = unformattedDate;
-      $("#events-data").append("<tr><td><a class='show' href='"+item.eventId+"'>"+item.title+"</a></td><td>"+item.startTime+"</td><td>###</td><td><a href='"+item.eventId+"' class='btn btn-xs btn-success'>Edit</a> <a href='"+item.eventId+"'class='btn btn-xs btn-danger'>Delete</a></td></tr>");
+      var formattedDate = unformattedDate.toDateString();
+      $("#events-data").append("<tr><td><a class='show' href='"+item.eventId+"'>"+item.title+"</a></td><td>"+formattedDate+"</td><td>###</td><td><a href='"+item.eventId+"' class='btn btn-xs btn-success'>Edit</a> <a href='"+item.eventId+"'class='btn btn-xs btn-danger'>Delete</a></td></tr>");
     });
   });
   
@@ -93,13 +93,17 @@ $(document).ready(function() {
       console.log(json_data);
       $(document).ajaxStop(replaceText);
       function replaceText() {
+        var startDateFormatted = new Date(json_data.startTime).toDateString();
+        var startTimeFormatted = new Date(json_data.startTime).toTimeString();
+        var endDateFormatted = new Date(json_data.endTime).toDateString();
+        var endTimeFormatted = new Date(json_data.endTime).toTimeString();
         $(".title").text(json_data.title);
         $(".location").text(json_data.location);
         $(".minPar").text(json_data.minParticipants);
-        $(".maxPar").html(json_data.maxParticipants);
-        $(".desc").html(json_data.description);
-        $(".startTime").html(json_data.startTime);
-        $(".endTime").html(json_data.endTime);
+        $(".maxPar").text(json_data.maxParticipants);
+        $(".desc").text(json_data.description);
+        $(".startTime").text(startDateFormatted+" "+startTimeFormatted);
+        $(".endTime").text(endDateFormatted+" "+endTimeFormatted);
       }
     });
   });

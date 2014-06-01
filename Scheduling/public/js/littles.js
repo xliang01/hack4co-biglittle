@@ -11,8 +11,7 @@ $(document).ready(function() {
     });
   });
   
-  $(".add-btn-pair").click(function(e) {
-    console.log("hjsgjfhs");
+  $("#add-littles-btn").click(function(e) {
     e.preventDefault();
     $("#page-container").load("../littles/add.html");
   });
