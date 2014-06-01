@@ -14,4 +14,10 @@ public final class DateUtil {
 		cal.setTime(date);
 		return DatatypeConverter.printDateTime(cal);
 	}
+	
+	public static Date StringToDate(String date) {
+		
+		Calendar cal = DatatypeConverter.parseDate(date);
+		return cal.getTime();
+	}
 }

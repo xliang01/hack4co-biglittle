@@ -28,6 +28,7 @@ public class EventService extends BaseService {
     {
     	if(event != null && event.getEventId() == -1) 
     	{
+    		event.setActive(true);
     		eventDAO.save(event);
     	}
     }

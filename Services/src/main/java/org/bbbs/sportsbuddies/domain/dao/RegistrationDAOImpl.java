@@ -7,15 +7,13 @@ import java.util.Map;
 
 import org.bbbs.sportsbuddies.domain.Registration;
 import org.bbbs.sportsbuddies.util.DateUtil;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 public class RegistrationDAOImpl extends BaseDAO implements RegistrationDAO {
-
 
 	@Override
 	public Registration getById(int id) {
 		
-		String sql = "SELECT * FROM Registration WHERE RegistrationId = ?";
+		final String sql = "SELECT * FROM Registration WHERE RegistrationId = ?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql,new Object[] { id });
 		
 		if(rows.size() == 1) {
@@ -28,7 +26,7 @@ public class RegistrationDAOImpl extends BaseDAO implements RegistrationDAO {
 	@Override
 	public List<Registration> getAll() {
 	
-        String sql = "SELECT * FROM Registration";
+        final String sql = "SELECT * FROM Registration";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         List<Registration> registrations  = new ArrayList<Registration>();
         
@@ -41,26 +39,21 @@ public class RegistrationDAOImpl extends BaseDAO implements RegistrationDAO {
 	}
 
 	@Override
-	public void save(Registration registration) {
+	public void save(Registration reg) {
+		final String sql = "INSERT INTO Registration (LittleUserId, BigUserId, EventId, LittleCanGo, BigCanGo) VALUES (?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, new Object[] { reg.getLittleId(), reg.getBigId(), reg.getEventId(), reg.isLittleCanGo(), reg.isBigCanGo() });
 	}
 	
 	@Override
-	public void update(Registration registration) {
-
-//		String sql = "INSERT INTO Event "
-//				+ "(EventId, EventName, Location, EventDate) VALUES (?, ?, ?, ?)";
-//		jdbcTemplate.update(sql, new Object[] { event.getEventName(),
-//		event.getName(), event.getLocation(), event.getEventDate()
-//		});
-
+	public void update(Registration reg) {
+		final String sql = "UPDATE Registration SET LittleUserId=?, BigUserId=?, EventId=?, LittleCanGo=?, BigCanGo=? WHERE RegistrationId=?";
+		jdbcTemplate.update(sql, new Object[] { reg.getLittleId(), reg.getBigId(), reg.getEventId(), reg.isLittleCanGo(), reg.isBigCanGo(), reg.getRegistrationId() });
 	}
 
 	@Override
 	public void deleteById(int id) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-
-		String sql = "DELETE FROM Event WHERE EventId=?";
-		//TODO LATER
+		final String sql = "DELETE FROM Registration WHERE RegistrationId=?";
+		jdbcTemplate.update(sql, new Object[] { id });
 	}
 	
 	private Registration createRegistrationFromRow(Map<String,Object> row)

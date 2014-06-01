@@ -16,12 +16,16 @@ public class Registration {
 					    int littleId,
 					    int bigId,
 					    int eventId,
+					    boolean bigCanGo,
+					    boolean littleCanGo,
 					    String createdAt)
 	{
 		this.registrationId = registrationId;
 		this.littleId = littleId;
 		this.bigId = bigId;
 		this.eventId = eventId;
+		this.bigCanGo = bigCanGo;
+		this.littleCanGo = littleCanGo;
 		this.createdAt = createdAt;
 	}
 	

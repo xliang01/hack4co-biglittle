@@ -36,7 +36,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 	public List<User> getAll(int typeId) {
 		
 		
-        String sql = "SELECT * FROM User WHERE UserTypeId = ?";
+        final String sql = "SELECT * FROM User WHERE UserTypeId=?";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, new Object[] { typeId });
         List<User> users = new ArrayList<User>();
         
@@ -86,27 +86,27 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 		
 		Address address = user.getAddress();
 		
-		final String sql = "UPDATE User SET FirstName=?, LastName=?, Email=?, UserTypeId=? WHERE UserId = ?";
+		final String sql = "UPDATE User SET FirstName=?, LastName=?, Email=?, UserTypeId=? WHERE UserId=?";
 		jdbcTemplate.update(sql, new Object[] { user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserTypeId(), user.getUserId() });
 		
 		if(address != null) {
-			final String addressSql = "UPDATE Address SET Line1=?, Line2=?, City=?, State=?, Zip=? WHERE AddressId = ?";
+			final String addressSql = "UPDATE Address SET Line1=?, Line2=?, City=?, State=?, Zip=? WHERE AddressId=?";
 			jdbcTemplate.update(addressSql, new Object[] { address.getLine1(), address.getLine2(), address.getCity(), address.getState(), address.getZip(), address.getAddressId() });
 		}
 	}
 	
 	public void deleteById(int id) {
 		
-		final String addressSql = "DELETE FROM Address WHERE UserId = ?";
+		final String addressSql = "DELETE FROM Address WHERE UserId=?";
 		jdbcTemplate.update(addressSql, new Object[] { id });
 		
-		final String sql = "DELETE FROM User WHERE UserId = ?";
+		final String sql = "DELETE FROM User WHERE UserId=?";
 		jdbcTemplate.update(sql, new Object[] { id });
 	}
 
 	private User getUser(int id, int typeId) {
 		
-		String sql = "SELECT * FROM User WHERE UserId = ? AND UserTypeId = ?";
+		final String sql = "SELECT * FROM User WHERE UserId=? AND UserTypeId=?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, new Object[] { id, typeId } );
 		
 		if(rows.size() == 1) {
@@ -118,7 +118,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 	
 	private Address getAddress(int userId) {
 		
-		String sql = "SELECT * FROM Address WHERE UserId = ?";
+		final String sql = "SELECT * FROM Address WHERE UserId=?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, new Object[] { userId });
         
         if(rows.size() == 1) {

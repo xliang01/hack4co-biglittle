@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import org.bbbs.sportsbuddies.domain.Pair;
 import org.bbbs.sportsbuddies.util.DateUtil;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 public class PairDAOImpl extends BaseDAO implements PairDAO {
 
 	@Override
 	public Pair getById(int id) {
 		
-		String sql = "SELECT * FROM Pair WHERE PairId = ?";
+		final String sql = "SELECT * FROM Pair WHERE PairId=?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, new Object[] { id });
 		
 		if(rows.size() == 1) {
@@ -26,7 +26,7 @@ public class PairDAOImpl extends BaseDAO implements PairDAO {
 	@Override
 	public List<Pair> getAll() {
 
-        String sql = "SELECT * FROM Pair";
+        final String sql = "SELECT * FROM Pair";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         List<Pair> pairs = new ArrayList<Pair>();
 		
@@ -39,26 +39,22 @@ public class PairDAOImpl extends BaseDAO implements PairDAO {
 	}
 
 	@Override
-	public void save(Pair pair) { }
+	public void save(Pair pair) { 
+		final String sql = "INSERT INTO Pair (LittleUserId, BigUserId) VALUES (?, ?)";
+		jdbcTemplate.update(sql, new Object[] { pair.getLittleUserId(), pair.getBigUserId() });
+	}
 
 
 	@Override
 	public void update(Pair pair) {
-
-//		String sql = "INSERT INTO Event "
-//				+ "(EventId, EventName, Location, EventDate) VALUES (?, ?, ?, ?)";
-//		jdbcTemplate.update(sql, new Object[] { event.getEventName(),
-//		event.getName(), event.getLocation(), event.getEventDate()
-//		});
-
+		final String sql = "UPDATE Pair SET LittleUserId=?, BigUserId=? WHERE PairId=?";
+		jdbcTemplate.update(sql, new Object[] { pair.getLittleUserId(), pair.getBigUserId(), pair.getPairId() });
 	}
 
 	@Override
 	public void deleteById(int id) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-
-		String sql = "DELETE FROM Event WHERE EventId=?";
-		//TODO LATER
+		final String sql = "DELETE FROM Pair WHERE PairId=?";
+		jdbcTemplate.update(sql, new Object[] { id });
 	}
 
 	private Pair createPairFromRow(Map<String,Object> row)

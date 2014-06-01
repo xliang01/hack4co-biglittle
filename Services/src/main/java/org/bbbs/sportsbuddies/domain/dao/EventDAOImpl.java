@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import org.bbbs.sportsbuddies.domain.Event;
 import org.bbbs.sportsbuddies.util.DateUtil;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 public class EventDAOImpl extends BaseDAO implements EventDAO {
 
 	@Override
-	public void save(Event event) {
-	}
-
-	@Override
 	public Event getById(int id) {
 		
-		String sql = "SELECT * FROM Event WHERE EventId = ?";
+		String sql = "SELECT * FROM Event WHERE EventId=?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql,new Object[] { id });
 		
 		if(rows.size() == 1) {
@@ -43,22 +39,45 @@ public class EventDAOImpl extends BaseDAO implements EventDAO {
 	}
 
 	@Override
+	public void save(Event event) {
+		
+		Date startTime = null;
+		Date endTime = null;
+		
+		if(event.getStartTime() != null) {
+			startTime = DateUtil.StringToDate(event.getStartTime());
+		}
+		
+		if(event.getEndTime() != null) {
+			endTime = DateUtil.StringToDate(event.getStartTime());
+		}
+		
+		final String sql = "INSERT INTO Event (Title, Location, MinParticipants, MaxParticipants, Active, Description, StartTime, EndTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, new Object[] { event.getTitle(), event.getLocation(), event.getMinParticipants(), event.getMaxParticipants(), event.isActive(), event.getDescription(), startTime, endTime });
+	}
+
+	@Override
 	public void update(Event event) {
-
-//		String sql = "INSERT INTO Event "
-//				+ "(EventId, EventName, Location, EventDate) VALUES (?, ?, ?, ?)";
-//		jdbcTemplate.update(sql, new Object[] { event.getEventName(),
-//		event.getName(), event.getLocation(), event.getEventDate()
-//		});
-
+		
+		Date startTime = null;
+		Date endTime = null;
+		
+		if(event.getStartTime() != null) {
+			startTime = DateUtil.StringToDate(event.getStartTime());
+		}
+		
+		if(event.getEndTime() != null) {
+			endTime = DateUtil.StringToDate(event.getStartTime());
+		}
+		
+		final String sql = "UPDATE Event SET Title=?, Location=?, MinParticipants=?, MaxParticipants=?, Active=?, Description=?, StartTime=?, EndTime=? WHERE EventId=?";
+		jdbcTemplate.update(sql, new Object[] { event.getTitle(), event.getLocation(), event.getMinParticipants(), event.getMaxParticipants(), event.isActive(), event.getDescription(), startTime, endTime, event.getEventId() });
 	}
 
 	@Override
 	public void deleteById(int id) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-
-		String sql = "DELETE FROM Event WHERE EventId=?";
-		//TODO LATER
+		final String sql = "DELETE FROM Event WHERE EventId=?";
+		jdbcTemplate.update(sql, new Object[] { id });
 	}
 	
 	private Event createEventFromRow(Map<String,Object> row)
