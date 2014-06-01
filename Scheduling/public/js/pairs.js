@@ -8,7 +8,7 @@ $(document).ready(function() {
   
   $.getJSON(json_url, function(data) {
     $.each(data, function(i, obj) {
-      
+      $("#pairs-table").append("<tr><td>"+obj.littleUserId+"</td><td>"+obj.bigUserId+"</td></tr>");
     });
   });
 });
