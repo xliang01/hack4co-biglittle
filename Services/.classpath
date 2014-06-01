@@ -20,4 +20,6 @@
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.3.3/jackson-annotations-2.3.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.3.3/jackson-core-2.3.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.3.3/jackson-databind-2.3.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.6/jackson-core-asl-1.9.6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.6/jackson-mapper-asl-1.9.6.jar"/>
 </classpath>
