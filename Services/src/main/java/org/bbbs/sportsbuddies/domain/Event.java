@@ -1,11 +1,8 @@
 package org.bbbs.sportsbuddies.domain;
 
-import java.util.Date;
-
 public class Event {
     
-	private int eventId;
-	
+	private int eventId = -1;
 	private String title;
 	private String location;
 	private int minParticipants;

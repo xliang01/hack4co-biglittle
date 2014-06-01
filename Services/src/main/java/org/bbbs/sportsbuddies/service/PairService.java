@@ -2,12 +2,8 @@ package org.bbbs.sportsbuddies.service;
 
 import java.util.List;
 
-import org.bbbs.sportsbuddies.domain.Event;
 import org.bbbs.sportsbuddies.domain.Pair;
-import org.bbbs.sportsbuddies.domain.User;
-import org.bbbs.sportsbuddies.domain.dao.EventDAO;
 import org.bbbs.sportsbuddies.domain.dao.PairDAO;
-import org.bbbs.sportsbuddies.domain.dao.UserDAO;
 
 public class PairService extends BaseService {
 	
@@ -18,8 +14,8 @@ public class PairService extends BaseService {
 		pairDAO = (PairDAO) context.getBean("PairDAO"); 
 	}
 	
-    public List<Pair> getAllPairs() {
-       
+    public List<Pair> getAllPairs() 
+    {   
         return pairDAO.getAll();
     }
     
@@ -27,5 +23,33 @@ public class PairService extends BaseService {
     {
     	return pairDAO.getById(id);
     }
-	
+    
+    public void savePair(Pair pair) 
+    {
+    	if(pair != null && pair.getPairId() == -1)
+    	{
+    		pairDAO.save(pair);
+    	}
+    	else 
+    	{
+    		updatePair(pair);
+    	}
+    }
+    
+    public void updatePair(Pair pair) 
+    {
+    	if(pair != null && getPair(pair.getPairId()) != null) 
+    	{
+    		pairDAO.update(pair);
+    	}
+    }
+    
+    public void deletePair(int id) 
+    {
+    	if(getPair(id) != null) 
+    	{
+    		pairDAO.deleteById(id);
+    	}
+    }
+    
 }

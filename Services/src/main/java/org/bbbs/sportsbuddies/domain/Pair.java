@@ -1,23 +1,24 @@
 package org.bbbs.sportsbuddies.domain;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.xml.bind.DatatypeConverter;
 
 public class Pair {
 
-	private int pairId;
-	private int bigId;
-	private int littleId;
+	private int pairId = -1;
+	private int bigId = -1;
+	private int littleId = -1;
 	private String createdAt;
 
-	public Pair() {
-	}
+	public Pair() {}
 
-	public Pair(int bigId, int littleId) {
+	public Pair(int pairId, 
+				int bigId, 
+				int littleId,
+				String createdAt) {
+		
+		this.pairId = pairId;
 		this.bigId = bigId;
 		this.littleId = littleId;
+		this.createdAt = createdAt;
 	}
 
 	public int getPairId() {

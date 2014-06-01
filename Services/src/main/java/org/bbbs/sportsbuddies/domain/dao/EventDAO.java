@@ -5,14 +5,14 @@ import java.util.List;
 import org.bbbs.sportsbuddies.domain.Event;
 
 public interface EventDAO {
-    
-    public void save(Event event);
-    
+    // Get
     public Event getById(int id);
-    //Update
-    public void update(Event event);
-    //Delete
-    public void deleteById(int id);
-    //Get All
+    // Get All
     public List<Event> getAll();
+	// Save
+    public void save(Event event);
+    // Update
+    public void update(Event event);
+    // Delete
+    public void deleteById(int id);
 }

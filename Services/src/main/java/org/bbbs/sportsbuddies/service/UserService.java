@@ -36,4 +36,62 @@ public class UserService extends BaseService {
     {
     	return userDAO.getById(id, LITTLE_TYPE);
     }
+    
+    public void saveBig(User user) 
+    {
+    	if(user != null && user.getUserId() == -1) 
+    	{
+	    	user.setUserTypeId(BIG_TYPE);
+	    	userDAO.save(user);
+    	}
+    	else
+    	{
+    		updateBig(user);
+    	}
+    }
+    
+    public void updateBig(User user) 
+    {
+       	if(user != null && user.getUserTypeId() == BIG_TYPE && getBig(user.getUserId()) != null) 
+       	{
+	    	userDAO.update(user);
+    	}
+    }
+    
+    public void deleteBig(int id) 
+    {
+    	if(getBig(id) != null) 
+    	{
+    		userDAO.deleteById(id);
+    	}
+    }
+    
+    public void saveLittle(User user) 
+    {
+    	if(user != null && user.getUserId() == -1) 
+    	{
+	    	user.setUserTypeId(LITTLE_TYPE);
+	    	userDAO.save(user);
+    	}
+    	else 
+    	{
+    		updateLittle(user);
+    	}
+    }
+    
+    public void updateLittle(User user) 
+    {
+    	if(user != null && user.getUserTypeId() == LITTLE_TYPE && getLittle(user.getUserId()) != null) 
+    	{
+	    	userDAO.update(user);
+    	}
+    }
+    
+    public void deleteLittle(int id) 
+    {
+    	if(getLittle(id) != null) 
+    	{
+    		userDAO.deleteById(id);
+    	}
+    }
 }

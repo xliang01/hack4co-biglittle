@@ -11,19 +11,40 @@ public class EventService extends BaseService {
 	
 	public EventService()
 	{
-		super();
 		eventDAO = (EventDAO) context.getBean("EventDAO");
 	}
 	
-    public List<Event> getAllEvents() {
-       
+    public List<Event> getAllEvents() 
+    {   
         return eventDAO.getAll();
     }
     
     public Event getEvent(int id)
     {
-    	EventDAO eventDAO = (EventDAO) context.getBean("EventDAO");
     	return eventDAO.getById(id);
     }
-	
+    
+    public void saveEvent(Event event) 
+    {
+    	if(event != null && event.getEventId() == -1) 
+    	{
+    		eventDAO.save(event);
+    	}
+    }
+    
+    public void updateEvent(Event event) 
+    {
+    	if(event != null && getEvent(event.getEventId()) != null) 
+    	{
+    		eventDAO.update(event);
+    	}
+    }
+    
+    public void deleteEvent(int id) 
+    {
+    	if(getEvent(id) != null) 
+    	{
+    		eventDAO.deleteById(id);
+    	}
+    }
 }

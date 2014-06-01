@@ -13,6 +13,16 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	<bean id="PairDAO" name="PairDAO"
+		class="org.bbbs.sportsbuddies.domain.dao.PairDAOImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="RegistrationDAO" name="RegistrationDAO"
+		class="org.bbbs.sportsbuddies.domain.dao.RegistrationDAOImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"

@@ -1,17 +1,14 @@
 package org.bbbs.sportsbuddies.domain;
 
-import java.util.Date;
-
 public class User {
 	
-	private int userId;
-	private int userTypeId;
-	
+	private int userId = -1;
+	private int userTypeId = -1;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private Address address;
-	private Date createdAt;
+	private String createdAt;
 	
 	public User() {}
 	
@@ -21,7 +18,7 @@ public class User {
 				String lastName,
 				String email,
 				Address address,
-				Date createdAt)
+				String createdAt)
 	{
 		this.userId = userId;
 		this.userTypeId = userTypeId;
@@ -80,11 +77,11 @@ public class User {
 		this.userTypeId = userTypeId;
 	}
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 }
