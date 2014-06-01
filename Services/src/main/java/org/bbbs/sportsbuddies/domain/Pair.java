@@ -1,27 +1,54 @@
 package org.bbbs.sportsbuddies.domain;
 
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.xml.bind.DatatypeConverter;
+
 public class Pair {
 
+	private int pairId;
 	private int bigId;
 	private int littleId;
-	
-	public Pair() {}
-	
+	private String createdAt;
+
+	public Pair() {
+	}
+
 	public Pair(int bigId, int littleId) {
 		this.bigId = bigId;
 		this.littleId = littleId;
 	}
-	
-	public int getBigId() {
+
+	public int getPairId() {
+		return pairId;
+	}
+
+	public void setPairId(int pairId) {
+		this.pairId = pairId;
+	}
+
+	public int getBigUserId() {
 		return bigId;
 	}
-	public void setBigId(int bigId) {
+
+	public void setBigUserId(int bigId) {
 		this.bigId = bigId;
 	}
-	public int getLittleId() {
+
+	public int getLittleUserId() {
 		return littleId;
 	}
-	public void setLittleId(int littleId) {
+
+	public void setLittleUserId(int littleId) {
 		this.littleId = littleId;
-	}	
+	}
+
+	public String getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
 }
