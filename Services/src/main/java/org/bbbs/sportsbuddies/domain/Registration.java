@@ -1,16 +1,14 @@
 package org.bbbs.sportsbuddies.domain;
 
-import java.util.Date;
-
 public class Registration {
 	
-	private int registrationId;
-	private int littleId;
-	private int bigId;
-	private int eventId;
+	private int registrationId = -1;
+	private int littleId = -1;
+	private int bigId = -1;
+	private int eventId = -1;
 	private boolean bigCanGo;
 	private boolean littleCanGo;
-	private Date createdAt;
+	private String createdAt;
 	
 	public Registration() {}
 	
@@ -18,12 +16,16 @@ public class Registration {
 					    int littleId,
 					    int bigId,
 					    int eventId,
-					    Date createdAt)
+					    boolean bigCanGo,
+					    boolean littleCanGo,
+					    String createdAt)
 	{
 		this.registrationId = registrationId;
 		this.littleId = littleId;
 		this.bigId = bigId;
 		this.eventId = eventId;
+		this.bigCanGo = bigCanGo;
+		this.littleCanGo = littleCanGo;
 		this.createdAt = createdAt;
 	}
 	
@@ -74,11 +76,11 @@ public class Registration {
 		this.littleCanGo = littleCanGo;
 	}
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 	
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 }

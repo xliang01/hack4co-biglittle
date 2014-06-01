@@ -4,7 +4,7 @@
     
     <div class="col-md-6">
       
-      <h1>Bigs / Add</h1>
+      <h1>Add new Big</h1>
       
       <form role="form" class="addForm">
         <div class="form-group">
@@ -28,51 +28,41 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="address[line1]">Line 1</label>
             <div class="col-sm-10">
-              <input type="text" id="address[line1]" name="address[line1]" placeholder="Address Line 1" class="form-control">
+              <input type="text" id="line1" name="address[line1]" placeholder="Address Line 1" class="form-control">
             </div>
           </div>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Line 2</label>
+            <label class="col-sm-2 control-label" for="address[line2]">Line 2</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Address Line 2" class="form-control">
+              <input type="text" id="line2" name="address[line2]" placeholder="Address Line 2" class="form-control">
             </div>
           </div>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">City</label>
+            <label class="col-sm-2 control-label" for="address[city]">City</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="City" class="form-control">
+              <input type="text" id="city" name="address[city]" placeholder="City" class="form-control">
             </div>
           </div>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">State</label>
+            <label class="col-sm-2 control-label" for="address[state]">State</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="State" class="form-control">
+              <input type="text" id="state" name="address[state]" placeholder="State" class="form-control">
             </div>
 
-            <label class="col-sm-2 control-label" for="textinput">Postcode</label>
+            <label class="col-sm-2 control-label" for="address[zip]">Zip Code</label>
             <div class="col-sm-4">
-              <input type="text" placeholder="Post Code" class="form-control">
-            </div>
-          </div>
-
-
-
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Country</label>
-            <div class="col-sm-10">
-              <input type="text" placeholder="Country" class="form-control">
+              <input type="text" id="zip" name="address[zip]" placeholder="Zip Code" class="form-control">
             </div>
           </div>
 
         </fieldset>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default form-submit" id="submit-btn">Submit</button>
       </form>
       
     </div>
@@ -80,3 +70,4 @@
   </div>
   
 </div>
+<script src="../js/bigs-add.js"></script>

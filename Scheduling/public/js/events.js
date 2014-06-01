@@ -1,31 +1,123 @@
 $(document).ready(function() {
-  var json_url = "https://bbbs.firebaseio.com/events.json";
+  var json_url = "http://ec2-54-200-250-50.us-west-2.compute.amazonaws.com:8080/sports-buddies/api/events";
+  var event = {};
+  
+  $.ajaxSetup ({
+    cache: false
+  });
+  
+  /* CREATE */
+  
+  $("#event-form").on("submit", function(e) {
+    e.preventDefault();
+    event.eventId = -1;
+    event.title = $("#title").val();
+    event.location = $("#location").val();
+    event.description = $("#description").val();
+    event.minParticipants = $("#minParticipants").val();
+    event.maxParticipants = $("#maxParticipants").val();
+    event.startTime = $("#startTime").val();
+    event.endTime = $("#endTime").val();
+    var event_data = JSON.stringify(event);
+    $.ajax ({
+      url: json_url,
+      type: 'POST',
+      data: event_data,
+      dataType: "json",
+      crossDomain: true,
+      contentType: "application/json",
+      success: function(result) {
+        // stuff
+      }
+    });
+  });
+  
+  /* UPDATE */
+  
+  $("#event-update-form").on("submit", function(e) {
+    e.preventDefault();
+    var updated_event = {};
+    event.title = $("#title").val();
+    event.location = $("#location").val();
+    event.description = $("#description").val();
+    event.minParticipants = $("#minParticipants").val();
+    event.maxParticipants = $("#maxParticipants").val();
+    event.startTime = $("#startTime").val();
+    event.endTime = $("#endTime").val();
+    $.ajax({
+      url: ''+id,
+      type: 'PUT',
+      data: updated_event,
+      success: function(result) {
+        // Stuff
+      }
+    });
+  });
+  
+  /* DELETE */
+  
+  $("#btn-delete").on("click", function(e) {
+    id = $(this).attr("href");
+    $.ajax({
+      url: ''+id,
+      type: 'DELETE',
+      success: function(result) {
+        // Stuff here
+      }
+    });
+  });
+  
+  /* INDEX */
   
   $.getJSON(json_url, function(data) {
     $.each(data, function(i, item){
-      $("#events-data").append("<tr><td><a href='123'>"+item.title+"</a></td><td>Coordinator Here</td><td>"+item.startTime+"</td><td>###</td><td><a href='#' class='btn btn-xs btn-success'>Edit</a> <a href='#' class='btn btn-xs btn-danger'>Delete</a></td></tr>");
+      var unformattedDate = new Date(item.startTime);
+      var formattedDate = unformattedDate.toDateString();
+      $("#events-data").append("<tr><td><a class='show' href='"+item.eventId+"'>"+item.title+"</a></td><td>"+formattedDate+"</td><td>###</td><td><a href='"+item.eventId+"' class='btn btn-xs btn-success'>Edit</a> <a href='"+item.eventId+"'class='btn btn-xs btn-danger'>Delete</a></td></tr>");
     });
   });
   
-  $("#events-data").on("click", "tr td a", function(e) {
+  $("#add-event-btn").on("click", function(e) {
+    e.preventDefault();
+    $("#page-container").load("../events/new.html");
+  });
+  
+  $("#events-data").on("click", "tr td .show", function(e) {
     e.preventDefault();
     var json_click = $(this).attr("href");
     $.getJSON(json_url, function(data) {
-      var json_data = _.where(data, {id: json_click});
+      var json_data; 
+      console.log(data);
+      $.each(data, function(i, obj) { if (obj.eventId == json_click) { json_data = obj; } });
       $("#page-container").load("../events/show.html");
+      console.log(json_data);
       $(document).ajaxStop(replaceText);
       function replaceText() {
-        $(".title").text("Title: ");
-        $(".location").html("Location: ");
-        $(".minPar").html("Minimum Participants: ");
-        $(".maxPar").html("Maximum Partcipants: ");
-        $(".desc").html("Descripton: ");
-        $(".myActive").html("Active: ");
-        $(".startTime").html("Start Time: ");
-        $(".endTime").html("End Time: ");
-        $(".creatDate").html("Date: ");
-        $(".lastEdit").html("Last Edit: ");
-      };
+        var startDateFormatted = new Date(json_data.startTime).toDateString();
+        var startTimeFormatted = new Date(json_data.startTime).toTimeString();
+        var endDateFormatted = new Date(json_data.endTime).toDateString();
+        var endTimeFormatted = new Date(json_data.endTime).toTimeString();
+        $(".title").text(json_data.title);
+        $(".location").text(json_data.location);
+        $(".minPar").text(json_data.minParticipants);
+        $(".maxPar").text(json_data.maxParticipants);
+        $(".desc").text(json_data.description);
+        $(".startTime").text(startDateFormatted+" "+startTimeFormatted);
+        $(".endTime").text(endDateFormatted+" "+endTimeFormatted);
+      }
     });
   });
+  
+  /*
+  
+  $("").on("click", function(e) {
+    e.preventDefault();
+  });
+  
+  $("").on("click", function(e) {
+    e.preventDefault();
+    alert("jdhsbghmbdsjbgjhbnsxdf,");
+  });
+  
+  */
 });

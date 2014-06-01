@@ -1,20 +1,17 @@
 package org.bbbs.sportsbuddies.domain;
 
-import java.util.Date;
-
 public class Event {
     
-	private int eventId;
-	
+	private int eventId = -1;
 	private String title;
 	private String location;
 	private int minParticipants;
 	private int maxParticipants;
 	private boolean active;
 	private String description;
-	private Date startTime;
-	private Date endTime;
-	private Date createdAt;
+	private String startTime;
+	private String endTime;
+	private String createdAt;
 	
 	public Event() {}
 	
@@ -25,9 +22,9 @@ public class Event {
 				 int maxParticipants,
 				 boolean active,
 				 String description,
-				 Date startTime,
-				 Date endTime,
-				 Date createdAt) {
+				 String startTime,
+				 String endTime,
+				 String createdAt) {
 		
 		this.eventId = eventId;
 		this.title = title;
@@ -97,27 +94,27 @@ public class Event {
 		this.description = description;
 	}
 	
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 	
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 	
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 	
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 	
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 }
