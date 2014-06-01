@@ -1,9 +1,9 @@
 package org.bbbs.sportsbuddies.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bbbs.sportsbuddies.domain.User;
+import org.bbbs.sportsbuddies.service.UserService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/")
 public class UserController {
 	
+	private UserService userService;
+	
+	public UserController() {
+		userService = new UserService();
+	}
+	
 	@RequestMapping(value = "bigs/{id}", 
 					method = RequestMethod.GET, 
 					headers="Accept=application/json")
 	public User GetBig(@PathVariable int id) {
 	
-		return new User();
+		return userService.getBig(id);
 	}
 		
 	@RequestMapping(value = "bigs", 
@@ -26,11 +32,7 @@ public class UserController {
 					headers = "Accept=application/json")
 	public List<User> GetBigs() {
 		
-		List<User> bigs = new ArrayList<User>();
-		bigs.add(new User());
-		bigs.add(new User());
-		
-		return bigs;
+		return userService.getBigs();
 	}
 	
 	@RequestMapping(value = "bigs",
@@ -61,7 +63,7 @@ public class UserController {
 					headers="Accept=application/json")
 	public User GetLittle(@PathVariable int id) {
 	
-		return new User();
+		return userService.getLittle(id);
 	}
 		
 	@RequestMapping(value = "littles", 
@@ -69,11 +71,7 @@ public class UserController {
 					headers = "Accept=application/json")
 	public List<User> GetLittles() {
 		
-		List<User> littles = new ArrayList<User>();
-		littles.add(new User());
-		littles.add(new User());
-		
-		return littles;
+		return userService.getLittles();
 	}
 	
 	@RequestMapping(value = "littles",

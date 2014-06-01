@@ -3,11 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
 	<bean id="EventDAO" name="EventDAO"
 		class="org.bbbs.sportsbuddies.domain.dao.EventDAOImpl">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+	<bean id="UserDAO" name="UserDAO"
+		class="org.bbbs.sportsbuddies.domain.dao.UserDAOImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
@@ -19,4 +24,5 @@
 		<property name="username" value="hack4cobiglittle"></property>
 		<property name="password" value="hack4cobiglittle01"></property>
 	</bean>
+	
 </beans>

@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
 	
 	private int userId;
-	private int userType;
+	private int userTypeId;
 	
 	private String firstName;
 	private String lastName;
@@ -16,7 +16,7 @@ public class User {
 	public User() {}
 	
 	public User(int userId,
-				int userType,
+				int userTypeId,
 				String firstName,
 				String lastName,
 				String email,
@@ -24,7 +24,7 @@ public class User {
 				Date createdAt)
 	{
 		this.userId = userId;
-		this.userType = userType;
+		this.userTypeId = userTypeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -72,12 +72,12 @@ public class User {
 		this.address = address;
 	}
 
-	public int getUserType() {
-		return userType;
+	public int getUserTypeId() {
+		return userTypeId;
 	}
 
-	public void setUserType(int userType) {
-		this.userType = userType;
+	public void setUserTypeId(int userTypeId) {
+		this.userTypeId = userTypeId;
 	}
 
 	public Date getCreatedAt() {

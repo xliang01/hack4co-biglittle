@@ -18,21 +18,9 @@ public class EventRowMapper implements RowMapper {
 		event.setTitle(rs.getString("Title"));
 
 		event.setLocation(rs.getString("Location"));
+		
+//		event.setEventDate(rs.getString("EventDate"));
 
-		event.setMinParticipants(rs.getInt("MinParticipants"));
-		
-		event.setMaxParticipants(rs.getInt("MaxParticipants"));
-		
-		event.setActive(rs.getBoolean("Active"));
-		
-		event.setDescription(rs.getString("Description"));
-		
-		event.setStartTime(rs.getTimestamp("StartTime"));
-		
-		event.setEndTime(rs.getTimestamp("EndTime"));
-	
-		event.setCreatedAt(rs.getTimestamp("Created"));
-		
 		return event;
 
 	}

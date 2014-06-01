@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class EventService {
 
 	ApplicationContext context;
+	
 	public EventService()
 	{
        context = new ClassPathXmlApplicationContext("applicationContext.xml");
